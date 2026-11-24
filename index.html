@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090e19">
+<title>ZIONA — The Living Word</title>
+<meta name="description" content="Explore the Bible, discover scripture, reflect on faith and grow in wisdom with ZIONA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --bg:#090e19;
+ --panel:#111a2a;
+ --panel2:#19253a;
+ --gold:#d7b56d;
+ --gold2:#f0d79d;
+ --cream:#f2eddf;
+ --muted:#9ca8b9;
+ --line:rgba(215,181,109,.2);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;min-height:100vh}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+header{
+ height:78px;display:flex;align-items:center;justify-content:space-between;
+ padding:0 7%;border-bottom:1px solid var(--line);
+ background:rgba(9,14,25,.95);position:sticky;top:0;z-index:20;
+ backdrop-filter:blur(18px)
+}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer}
+.logo-mark{
+ width:43px;height:43px;border:1px solid var(--gold);border-radius:12px;
+ display:grid;place-items:center;color:var(--gold);
+ font-family:Georgia;font-size:25px;
+}
+.logo-name{font-family:'Cormorant Garamond',serif;font-size:30px;letter-spacing:5px}
+.logo-sub{font-size:8px;color:var(--gold);letter-spacing:3px;margin-top:1px}
+nav{display:flex;gap:24px;align-items:center}
+nav button{background:none;border:0;color:#b9c1ce;font-size:11px;letter-spacing:1px;transition:.2s}
+nav button:hover,nav button.active{color:var(--gold)}
+.menu{display:none;background:none;border:0;color:var(--gold);font-size:25px}
+.page{display:none;animation:fade .4s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.hero{
+ min-height:590px;padding:100px 8%;display:flex;align-items:center;
+ background:linear-gradient(90deg,rgba(9,14,25,.98),rgba(9,14,25,.82),rgba(9,14,25,.24)),
+ url('https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=2000&q=85') center/cover;
+}
+.hero-content{max-width:690px}
+.eyebrow{color:var(--gold);letter-spacing:4px;font-size:10px;font-weight:700}
+h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif}
+.hero h1{font-size:clamp(58px,8vw,102px);line-height:.94;margin:27px 0}
+.hero h1 span{color:var(--gold);font-style:italic}
+.hero p{color:#c0c7d1;max-width:500px;line-height:1.9;font-size:14px}
+.actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:32px}
+.btn{
+ border:1px solid var(--gold);padding:14px 23px;background:var(--gold);
+ color:#111827;font-size:11px;font-weight:800;letter-spacing:1.5px;
+ text-transform:uppercase;transition:.25s;border-radius:3px;
+}
+.btn:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn.outline{background:transparent;color:var(--gold)}
+.btn.outline:hover{background:rgba(215,181,109,.1)}
+.section{padding:76px 8%}
+.section-heading{text-align:center;margin-bottom:40px}
+.section-heading h2{font-size:46px;font-weight:500;margin:12px 0}
+.section-heading p{color:var(--muted);font-size:13px}
+.verse-card{
+ max-width:900px;margin:auto;text-align:center;padding:48px 35px;
+ background:linear-gradient(140deg,#172238,#101827);
+ border:1px solid var(--line);position:relative;border-radius:5px;
+}
+.verse-card:before,.verse-card:after{content:"";position:absolute;width:35px;height:35px;border-color:var(--gold)}
+.verse-card:before{top:12px;left:12px;border-top:1px solid;border-left:1px solid}
+.verse-card:after{bottom:12px;right:12px;border-bottom:1px solid;border-right:1px solid}
+.verse-card blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(25px,4vw,39px);line-height:1.4}
+.reference{color:var(--gold);letter-spacing:2px;font-size:11px;margin-top:22px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature{
+ background:var(--panel);padding:28px;border:1px solid var(--line);
+ border-radius:5px;transition:.25s;cursor:pointer;
+}
+.feature:hover{transform:translateY(-5px);border-color:var(--gold)}
+.feature .symbol{font-size:26px;color:var(--gold);margin-bottom:17px}
+.feature h3{font-size:26px;margin-bottom:9px}
+.feature p{font-size:12px;color:var(--muted);line-height:1.8}
+.page-heading{padding:75px 8% 45px;background:linear-gradient(120deg,#121e32,#090e19)}
+.page-heading h1{font-size:62px;margin:12px 0}
+.page-heading p{color:var(--muted);font-size:13px}
+.content{padding:40px 8% 85px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:25px;margin-bottom:20px}
+.panel h2{font-size:31px;margin-bottom:17px}
+select,input,textarea{
+ background:#0c1422;border:1px solid #354158;color:var(--cream);
+ padding:13px;border-radius:3px;width:100%;outline:none;
+}
+select:focus,input:focus,textarea:focus{border-color:var(--gold)}
+.reader-controls{display:grid;grid-template-columns:2fr 1fr auto;gap:12px}
+.scripture{font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.9;color:#e7e1d5;white-space:pre-wrap}
+.scripture sup{color:var(--gold);font-family:'DM Sans';font-size:11px;margin-right:5px}
+.book-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.book{padding:15px;background:var(--panel);border:1px solid var(--line);color:var(--cream);text-align:left;border-radius:3px;transition:.2s}
+.book:hover{border-color:var(--gold);color:var(--gold);background:var(--panel2)}
+.book small{display:block;color:var(--muted);font-size:10px;margin-top:5px}
+.subheading{color:var(--gold);letter-spacing:3px;font-size:11px;margin:30px 0 15px}
+.theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.theme{padding:28px;background:linear-gradient(140deg,#17243b,#101827);border:1px solid var(--line);cursor:pointer;transition:.2s}
+.theme:hover{border-color:var(--gold);transform:translateY(-3px)}
+.theme h3{font-size:27px;margin-bottom:7px}
+.theme p{font-size:12px;color:var(--muted)}
+textarea{min-height:160px;resize:vertical;line-height:1.7}
+.journal-entry{padding:18px 0;border-bottom:1px solid var(--line)}
+.journal-entry h3{font-size:23px;color:var(--gold)}
+.journal-entry p{font-size:13px;color:#c0c7d1;margin-top:8px;white-space:pre-wrap}
+.journal-entry small{color:var(--muted)}
+.notice{font-size:12px;color:var(--muted);margin-top:14px;line-height:1.7}
+.loading{color:var(--gold);padding:25px}
+footer{
+ border-top:1px solid var(--line);padding:38px 8%;
+ display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+ color:var(--muted);font-size:11px;
+}
+footer strong{color:var(--gold);letter-spacing:4px}
+@media(max-width:850px){
+ nav{display:none;position:absolute;top:78px;left:0;right:0;background:#101827;padding:22px 7%;flex-direction:column;align-items:flex-start;gap:22px}
+ nav.open{display:flex}.menu{display:block}
+ .grid,.theme-grid{grid-template-columns:1fr 1fr}
+ .book-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:550px){
+ header{padding:0 5%}.logo-name{font-size:25px}
+ .hero{padding:75px 7%;min-height:530px}
+ .section,.content{padding:55px 6%}
+ .grid,.theme-grid{grid-template-columns:1fr}
+ .book-grid{grid-template-columns:repeat(2,1fr)}
+ .reader-controls{grid-template-columns:1fr}
+ .page-heading{padding:55px 6%}.page-heading h1{font-size:46px}
+ .verse-card{padding:38px 22px}
+}
+</style>
+</head>
+
+<body>
+<header>
+ <div class="logo" onclick="showPage('home')">
+  <div class="logo-mark">✦</div>
+  <div>
+   <div class="logo-name">ZIONA</div>
+   <div class="logo-sub">THE LIVING WORD</div>
+  </div>
+ </div>
+ <button class="menu" onclick="toggleMenu()" aria-label="Open navigation">☰</button>
+ <nav id="nav">
+  <button class="active" data-page="home" onclick="showPage('home')">HOME</button>
+  <button data-page="read" onclick="showPage('read')">READ</button>
+  <button data-page="books" onclick="showPage('books')">BOOKS</button>
+  <button data-page="discover" onclick="showPage('discover')">DISCOVER</button>
+  <button data-page="journal" onclick="showPage('journal')">MY JOURNAL</button>
+  <button data-page="about" onclick="showPage('about')">ABOUT</button>
+ </nav>
+</header>
+
+<main>
+<section id="home" class="page active">
+ <div class="hero">
+  <div class="hero-content">
+   <div class="eyebrow">✦ &nbsp; A JOURNEY THROUGH SCRIPTURE &nbsp; ✦</div>
+   <h1>Discover the<br><span>Living Word.</span></h1>
+   <p>Explore the timeless wisdom of the Bible. Find inspiration, deepen your understanding, and discover the power of faith, one chapter at a time.</p>
+   <div class="actions">
+    <button class="btn" onclick="showPage('read')">Explore Scripture ↗</button>
+    <button class="btn outline" onclick="showPage('discover')">Discover More</button>
+   </div>
+  </div>
+ </div>
+
+ <div class="section">
+  <div class="section-heading">
+   <div class="eyebrow">TODAY'S INSPIRATION</div>
+   <h2>A Word to Remember</h2>
+   <p>Timeless words. Meaningful moments.</p>
+  </div>
+  <div class="verse-card">
+   <blockquote>“For we walk by faith, not by sight.”</blockquote>
+   <div class="reference">2 CORINTHIANS 5:7 · KJV</div>
+  </div>
+ </div>
+
+ <div class="section" style="padding-top:5px">
+  <div class="section-heading">
+   <div class="eyebrow">EXPLORE ZIONA</div>
+   <h2>More Than Reading</h2>
+   <p>A place to explore, learn and reflect.</p>
+  </div>
+  <div class="grid">
+   <div class="feature" onclick="showPage('read')">
+    <div class="symbol">✧</div><h3>Read Scripture</h3>
+    <p>Explore Bible books and chapters through our scripture reader.</p>
+   </div>
+   <div class="feature" onclick="showPage('discover')">
+    <div class="symbol">◇</div><h3>Find Wisdom</h3>
+    <p>Discover verses and themes about the most important parts of life.</p>
+   </div>
+   <div class="feature" onclick="showPage('journal')">
+    <div class="symbol">✎</div><h3>Reflect & Write</h3>
+    <p>Keep your thoughts, prayers and reflections in one place.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="read" class="page">
+ <div class="page-heading">
+  <div class="eyebrow">THE WORD OF GOD</div>
+  <h1>Read the Bible.</h1>
+  <p>Choose a book, select a chapter and explore scripture.</p>
+ </div>
+ <div class="content">
+  <div class="panel">
+   <h2>Scripture Reader</h2>
+   <div class="reader-controls">
+    <select id="bookSelect" aria-label="Choose a Bible book"></select>
+    <select id="chapterSelect" aria-label="Choose a chapter"></select>
+    <button class="btn" onclick="loadChapter()">READ CHAPTER</button>
+   </div>
+   <p class="notice">Translation: King James Version (KJV), a public-domain English translation.</p>
+  </div>
+  <div class="panel">
+   <h2 id="chapterTitle">Welcome to the Scripture Reader</h2>
+   <div id="scripture" class="scripture">Choose a book and chapter above to begin reading.</div>
+   <p id="readerStatus" class="notice"></p>
+  </div>
+ </div>
+</section>
+
+<section id="books" class="page">
+ <div class="page-heading">
+  <div class="eyebrow">66 BOOKS · ONE STORY</div>
+  <h1>The Books of the Bible.</h1>
+  <p>Explore the Old and New Testaments.</p>
+ </div>
+ <div class="content">
+  <h3 class="subheading">OLD TESTAMENT · 39 BOOKS</h3>
+  <div id="oldBooks" class="book-grid"></div>
+  <h3 class="subheading">NEW TESTAMENT · 27 BOOKS</h3>
+  <div id="newBooks" class="book-grid"></div>
+ </div>
+</section>
+
+<section id="discover" class="page">
+ <div class="page-heading">
+  <div class="eyebrow">GROW IN UNDERSTANDING</div>
+  <h1>Discover His Word.</h1>
+  <p>Explore meaningful themes found throughout scripture.</p>
+ </div>
+ <div class="content">
+  <div class="theme-grid" id="themeGrid"></div>
+  <div class="panel" style="margin-top:25px">
+   <h2 id="themeTitle">Choose a theme</h2>
+   <div id="themeContent" class="scripture" style="font-size:18px">
+    Select a theme above to explore its scripture references.
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="journal" class="page">
+ <div class="page-heading">
+  <div class="eyebrow">YOUR PERSONAL SPACE</div>
+  <h1>My Journal.</h1>
+  <p>A quiet place for thoughts, prayers and reflections.</p>
+ </div>
+ <div class="content">
+  <div class="panel">
+   <h2>Write a reflection</h2>
+   <input id="entryTitle" placeholder="Give your reflection a title..." maxlength="100">
+   <textarea id="entryText" placeholder="Write your thoughts, prayers or reflections here..." style="margin-top:12px"></textarea>
+   <button class="btn" onclick="saveEntry()" style="margin-top:15px">SAVE REFLECTION</button>
+   <p class="notice">Entries are saved in this browser on this device. They are not uploaded to a server.</p>
+  </div>
+  <div class="panel">
+   <h2>Your reflections</h2>
+   <div id="entries"><p class="notice">Your saved reflections will appear here.</p></div>
+  </div>
+ </div>
+</section>
+
+<section id="about" class="page">
+ <div class="page-heading">
+  <div class="eyebrow">OUR VISION</div>
+  <h1>About Ziona.</h1>
+  <p>Faith. Truth. Understanding.</p>
+ </div>
+ <div class="content">
+  <div class="panel" style="padding:45px">
+   <div class="eyebrow">THE INSPIRATION</div>
+   <h2 style="font-size:42px;margin:15px 0">A place to discover.</h2>
+   <p style="line-height:2;color:#bdc6d3;font-size:14px">
+    ZIONA is a space created to make exploring the Bible accessible, meaningful and inspiring.
+    Whether you are opening scripture for the first time or continuing a lifelong journey of faith,
+    this is a place to read, reflect and discover.
+   </p>
+   <div class="verse-card" style="margin-top:35px">
+    <blockquote>“Thy word is a lamp unto my feet, and a light unto my path.”</blockquote>
+    <div class="reference">PSALM 119:105 · KJV</div>
+   </div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div><strong>ZIONA ✦</strong><p style="margin-top:9px">THE LIVING WORD</p></div>
+ <div>Built for faith, learning and discovery.</div>
+ <div>© 2026 ZIONA</div>
+</footer>
+
+<script>
+const books=[
+"Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth",
+"1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra",
+"Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon",
+"Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos",
+"Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi",
+"Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians",
+"Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians",
+"1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter",
+"1 John","2 John","3 John","Jude","Revelation"
+];
+
+const chapterCounts=[
+50,40,27,36,34,24,21,4,31,24,22,25,29,36,10,13,10,42,150,31,12,8,
+66,52,5,48,12,14,3,9,1,4,7,3,3,3,2,14,4,28,16,24,21,28,16,16,
+13,6,4,4,5,3,6,4,3,1,13,5,5,3,5,1,1,1,22
+];
+
+const themes=[
+{name:"Faith",desc:"Trusting in God's promises",verses:[
+["Hebrews 11:1","Now faith is the substance of things hoped for, the evidence of things not seen."],
+["2 Corinthians 5:7","For we walk by faith, not by sight."],
+["Proverbs 3:5","Trust in the LORD with all thine heart; and lean not unto thine own understanding."]]},
+{name:"Love",desc:"The greatest of all virtues",verses:[
+["1 Corinthians 13:4","Charity suffereth long, and is kind."],
+["1 John 4:8","He that loveth not knoweth not God; for God is love."],
+["John 15:12","This is my commandment, That ye love one another, as I have loved you."]]},
+{name:"Courage",desc:"Finding strength in difficult times",verses:[
+["Joshua 1:9","Be strong and of a good courage; be not afraid, neither be thou dismayed."],
+["Psalm 27:1","The LORD is my light and my salvation; whom shall I fear?"],
+["Isaiah 41:10","Fear thou not; for I am with thee."]]},
+{name:"Wisdom",desc:"Seeking understanding and knowledge",verses:[
+["Proverbs 2:6","For the LORD giveth wisdom: out of his mouth cometh knowledge and understanding."],
+["James 1:5","If any of you lack wisdom, let him ask of God."],
+["Proverbs 9:10","The fear of the LORD is the beginning of wisdom."]]},
+{name:"Peace",desc:"Discovering peace and reassurance",verses:[
+["John 14:27","Peace I leave with you, my peace I give unto you."],
+["Philippians 4:7","And the peace of God, which passeth all understanding, shall keep your hearts and minds."],
+["Psalm 4:8","I will both lay me down in peace, and sleep."]]},
+{name:"Hope",desc:"Looking forward with confidence",verses:[
+["Romans 15:13","Now the God of hope fill you with all joy and peace in believing."],
+["Jeremiah 29:11","For I know the thoughts that I think toward you, saith the LORD."],
+["Romans 12:12","Rejoicing in hope; patient in tribulation; continuing instant in prayer."]]},
+{name:"Forgiveness",desc:"The power of mercy and grace",verses:[
+["Ephesians 4:32","And be ye kind one to another, tenderhearted, forgiving one another."],
+["Colossians 3:13","Forgiving one another, if any man have a quarrel against any."],
+["1 John 1:9","If we confess our sins, he is faithful and just to forgive us our sins."]]},
+{name:"Gratitude",desc:"Recognising life's blessings",verses:[
+["1 Thessalonians 5:18","In every thing give thanks: for this is the will of God."],
+["Psalm 107:1","O give thanks unto the LORD, for he is good."],
+["Colossians 3:15","And be ye thankful."]]},
+{name:"Strength",desc:"Finding strength through faith",verses:[
+["Philippians 4:13","I can do all things through Christ which strengtheneth me."],
+["Isaiah 40:31","But they that wait upon the LORD shall renew their strength."],
+["Psalm 46:1","God is our refuge and strength, a very present help in trouble."]]}
+];
+
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+ document.getElementById('nav').classList.remove('open');
+ window.scrollTo({top:0,behavior:'smooth'});
+ if(id==='journal')renderEntries();
+}
+function toggleMenu(){document.getElementById('nav').classList.toggle('open')}
+
+function createBookList(){
+ books.forEach((book,i)=>{
+  const el=document.createElement('button');
+  el.className='book';
+  el.innerHTML=`${book}<small>${chapterCounts[i]} chapters</small>`;
+  el.onclick=()=>openBook(i);
+  document.getElementById(i<39?'oldBooks':'newBooks').appendChild(el);
+  const option=document.createElement('option');
+  option.value=i;option.textContent=book;
+  document.getElementById('bookSelect').appendChild(option);
+ });
+ document.getElementById('bookSelect').addEventListener('change',updateChapters);
+ updateChapters();
+}
+function updateChapters(){
+ const index=Number(document.getElementById('bookSelect').value);
+ const chapter=document.getElementById('chapterSelect');
+ chapter.innerHTML='';
+ for(let i=1;i<=chapterCounts[index];i++){
+  const option=document.createElement('option');
+  option.value=i;option.textContent='Chapter '+i;
+  chapter.appendChild(option);
+ }
+}
+function openBook(index){
+ document.getElementById('bookSelect').value=index;
+ updateChapters();
+ showPage('read');
+ loadChapter();
+}
+async function loadChapter(){
+ const index=Number(document.getElementById('bookSelect').value);
+ const chapter=document.getElementById('chapterSelect').value;
+ const book=books[index];
+ document.getElementById('chapterTitle').textContent=book+' '+chapter;
+ const output=document.getElementById('scripture');
+ const status=document.getElementById('readerStatus');
+ output.textContent='Loading scripture...';
+ status.textContent='';
+ try{
+  const url=`https://bible-api.com/${encodeURIComponent(book+' '+chapter)}?translation=kjv`;
+  const response=await fetch(url);
+  if(!response.ok)throw new Error('Could not load scripture');
+  const data=await response.json();
+  if(!data.verses?.length)throw new Error('No verses returned');
+  output.innerHTML='';
+  data.verses.forEach(v=>{
+   const line=document.createElement('span');
+   const sup=document.createElement('sup');
+   sup.textContent=v.verse;
+   line.appendChild(sup);
+   line.appendChild(document.createTextNode(v.text.trim()+' '));
+   output.appendChild(line);
+  });
+  status.textContent='King James Version · '+book+' '+chapter;
+ }catch(error){
+  output.textContent='We could not load this chapter right now. Please check your internet connection and try again.';
+  status.textContent='The online scripture service may temporarily be unavailable.';
+ }
+}
+function createThemes(){
+ themes.forEach((theme,i)=>{
+  const el=document.createElement('div');
+  el.className='theme';
+  const h=document.createElement('h3');h.textContent=theme.name;
+  const p=document.createElement('p');p.textContent=theme.desc;
+  el.append(h,p);
+  el.onclick=()=>showTheme(i);
+  document.getElementById('themeGrid').appendChild(el);
+ });
+}
+function showTheme(i){
+ const theme=themes[i];
+ document.getElementById('themeTitle').textContent=theme.name;
+ const output=document.getElementById('themeContent');
+ output.innerHTML='';
+ theme.verses.forEach(v=>{
+  const div=document.createElement('div');
+  div.style.marginBottom='24px';
+  const quote=document.createElement('div');
+  quote.textContent='“'+v[1]+'”';
+  const ref=document.createElement('div');
+  ref.className='reference';
+  ref.textContent=v[0]+' · KJV';
+  div.append(quote,ref);
+  output.appendChild(div);
+ });
+}
+function saveEntry(){
+ const title=document.getElementById('entryTitle').value.trim();
+ const content=document.getElementById('entryText').value.trim();
+ if(!title||!content){alert('Please enter a title and reflection.');return}
+ try{
+  const entries=JSON.parse(localStorage.getItem('zionaEntries')||'[]');
+  entries.unshift({title,content,date:new Date().toLocaleString()});
+  localStorage.setItem('zionaEntries',JSON.stringify(entries));
+  document.getElementById('entryTitle').value='';
+  document.getElementById('entryText').value='';
+  renderEntries();
+ }catch(error){alert('Your journal could not be saved in this browser.')}
+}
+function renderEntries(){
+ const output=document.getElementById('entries');
+ output.innerHTML='';
+ try{
+  const entries=JSON.parse(localStorage.getItem('zionaEntries')||'[]');
+  if(!entries.length){output.textContent='Your saved reflections will appear here.';return}
+  entries.forEach((entry,i)=>{
+   const div=document.createElement('div');div.className='journal-entry';
+   const h=document.createElement('h3');h.textContent=entry.title;
+   const date=document.createElement('small');date.textContent=entry.date;
+   const p=document.createElement('p');p.textContent=entry.content;
+   const del=document.createElement('button');
+   del.textContent='DELETE';del.className='btn outline';
+   del.style.marginTop='12px';del.style.padding='8px 14px';
+   del.onclick=()=>{
+    const updated=JSON.parse(localStorage.getItem('zionaEntries')||'[]');
+    updated.splice(i,1);
+    localStorage.setItem('zionaEntries',JSON.stringify(updated));
+    renderEntries();
+   };
+   div.append(h,date,p,del);
+   output.appendChild(div);
+  });
+ }catch(error){output.textContent='Unable to read your journal entries.'}
+}
+
+createBookList();
+createThemes();
+renderEntries();
+</script>
+</body>
+</html>

@@ -7,22 +7,23 @@
 <title>ZIONA — The Living Word</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root {
-  --bg:#101526;
-  --panel:#192137;
-  --panel2:#202b43;
-  --gold:#d8bd83;
-  --gold2:#f0d9a8;
-  --cream:#f5f0e5;
-  --muted:#a9afbd;
-  --line:rgba(216,189,131,.2);
+:root{
+ --bg:#101526;
+ --panel:#192137;
+ --panel2:#202b43;
+ --gold:#d8bd83;
+ --gold2:#f0d9a8;
+ --cream:#f5f0e5;
+ --muted:#a9afbd;
+ --line:rgba(216,189,131,.2);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-header{position:sticky;top:0;z-index:10;background:rgba(16,21,38,.96);backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:10;background:rgba(16,21,38,.97);backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
 .nav{max-width:1200px;margin:auto;padding:17px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .logo{font-family:'Cormorant Garamond',serif;font-size:30px;letter-spacing:4px;color:var(--gold);font-weight:700}
 .logo small{display:block;font-family:'DM Sans',sans-serif;font-size:8px;letter-spacing:3px;color:var(--muted);text-align:center}
@@ -30,7 +31,8 @@ nav{display:flex;gap:7px;flex-wrap:wrap}
 nav button{border:0;background:transparent;color:var(--muted);padding:10px 13px;border-radius:8px}
 nav button:hover,nav button.active{background:var(--panel2);color:var(--gold)}
 main{max-width:1200px;margin:auto;padding:45px 24px 80px}
-.page{display:none}.page.active{display:block}
+.page{display:none}
+.page.active{display:block}
 .hero{text-align:center;padding:65px 15px 75px}
 .eyebrow{color:var(--gold);letter-spacing:4px;text-transform:uppercase;font-size:11px;font-weight:700}
 h1,h2,h3{font-family:'Cormorant Garamond',serif}
@@ -38,21 +40,26 @@ h1,h2,h3{font-family:'Cormorant Garamond',serif}
 .hero p{color:var(--muted);max-width:550px;margin:0 auto 28px;line-height:1.8}
 .gold-btn{background:var(--gold);color:#171b28;border:0;border-radius:7px;padding:13px 22px;font-weight:700}
 .gold-btn:hover{background:var(--gold2);transform:translateY(-1px)}
+.gold-btn:disabled{opacity:.5;cursor:not-allowed}
 .outline-btn{background:transparent;color:var(--gold);border:1px solid var(--line);border-radius:7px;padding:12px 18px}
 .section-title{font-size:38px;font-weight:500;margin:0 0 8px}
 .sub{color:var(--muted);line-height:1.7;margin:0 0 25px}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:25px;margin-bottom:22px}
-.reader-controls{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px}
+.reader-controls{display:grid;grid-template-columns:2fr 1fr 1.5fr;gap:14px}
 .field label{display:block;color:var(--gold);font-size:11px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:9px}
 select,input,textarea{width:100%;background:#111a2c;color:var(--cream);border:1px solid var(--line);border-radius:8px;padding:13px;outline:none}
 select:focus,input:focus,textarea:focus{border-color:var(--gold)}
+select:disabled{opacity:.6}
 .reader-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 .scripture{margin-top:25px;background:#f5f0e5;color:#292b30;border-radius:13px;padding:clamp(22px,5vw,48px);min-height:230px}
 .scripture h2{font-size:35px;color:#7e6335;margin:0 0 22px}
-.verse{font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.8;margin:0 0 12px}
+.verse{font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.8;margin:0 0 12px;white-space:pre-line}
 .verse sup{color:#a17d42;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;margin-right:7px}
+.chapter-heading{font-family:'Cormorant Garamond',serif;font-size:23px;color:#80653c;margin:25px 0 12px}
 .loading,.error{padding:35px;text-align:center;color:var(--muted)}
-.error{color:#c98282}
+.error{color:#b65e5e}
+.attribution{font-size:11px;line-height:1.6;color:#756c5c;border-top:1px solid #d8cdb7;margin-top:30px;padding-top:15px}
+.attribution a{color:#80653c}
 .chapter-nav{display:flex;justify-content:space-between;gap:10px;margin-top:17px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
 .book-card,.feature-card{background:var(--panel);border:1px solid var(--line);padding:22px;border-radius:12px;cursor:pointer;transition:.2s}
@@ -65,9 +72,10 @@ textarea{min-height:150px;resize:vertical;line-height:1.6}
 .journal-entry{background:var(--panel2);padding:16px;border-radius:9px;margin-top:12px}
 .journal-entry small{color:var(--gold)}
 .journal-entry p{white-space:pre-wrap;line-height:1.6}
+.status{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.6}
 footer{text-align:center;border-top:1px solid var(--line);padding:30px;color:var(--muted);font-size:12px}
 footer span{color:var(--gold)}
-@media(max-width:650px){
+@media(max-width:700px){
  .nav{flex-direction:column}
  nav{justify-content:center}
  main{padding:25px 15px 55px}
@@ -77,6 +85,7 @@ footer span{color:var(--gold)}
 }
 </style>
 </head>
+
 <body>
 <header>
  <div class="nav">
@@ -93,6 +102,7 @@ footer span{color:var(--gold)}
 </header>
 
 <main>
+
 <section id="home" class="page active">
  <div class="hero">
   <div class="eyebrow">A place for faith and reflection</div>
@@ -100,9 +110,11 @@ footer span{color:var(--gold)}
   <p>Explore Scripture, discover timeless wisdom and deepen your understanding of the Bible. Your journey through the living Word starts here.</p>
   <button class="gold-btn" onclick="showPage('bible')">Explore the Bible →</button>
  </div>
+
  <div class="quote">"Your word is a lamp to my feet and a light to my path."<small>PSALM 119:105 · KJV</small></div>
+
  <div class="grid">
-  <div class="feature-card" onclick="showPage('bible')"><h3>Read Scripture</h3><p>Explore all 66 books of the Bible, chapter by chapter.</p></div>
+  <div class="feature-card" onclick="showPage('bible')"><h3>Read Scripture</h3><p>Explore Bible books and chapters in different translations.</p></div>
   <div class="feature-card" onclick="showPage('discover')"><h3>Discover</h3><p>Explore meaningful verses and biblical themes.</p></div>
   <div class="feature-card" onclick="showPage('journal')"><h3>Your Journal</h3><p>Write down thoughts, reflections and things you learn.</p></div>
  </div>
@@ -111,42 +123,56 @@ footer span{color:var(--gold)}
 <section id="bible" class="page">
  <div class="eyebrow">The Holy Scriptures</div>
  <h1 class="section-title">Bible Reader</h1>
- <p class="sub">Choose a book and chapter to begin reading.</p>
+ <p class="sub">Choose your Bible version, book and chapter.</p>
+
  <div class="panel">
   <div class="reader-controls">
+
    <div class="field">
-    <label for="bookSelect">Book of the Bible</label>
-    <select id="bookSelect"></select>
-   </div>
-   <div class="field">
-    <label for="chapterSelect">Chapter</label>
-    <select id="chapterSelect"></select>
-   </div>
-   <div class="field">
-    <label for="translationSelect">Translation</label>
-    <select id="translationSelect">
-     <option value="kjv">King James Version</option>
+    <label for="translationSelect">Bible Version</label>
+    <select id="translationSelect" disabled>
+     <option>Loading available translations...</option>
     </select>
    </div>
+
+   <div class="field">
+    <label for="bookSelect">Book</label>
+    <select id="bookSelect" disabled>
+     <option>Loading books...</option>
+    </select>
+   </div>
+
+   <div class="field">
+    <label for="chapterSelect">Chapter</label>
+    <select id="chapterSelect" disabled>
+     <option>Choose a book first</option>
+    </select>
+   </div>
+
   </div>
+
   <div class="reader-actions">
-   <button class="gold-btn" id="readButton">Read Chapter</button>
-   <button class="outline-btn" id="randomButton">Random Chapter</button>
+   <button class="gold-btn" id="readButton" disabled>Read Chapter</button>
+   <button class="outline-btn" id="randomButton" disabled>Random Chapter</button>
   </div>
+
+  <div class="status" id="readerStatus">Connecting to the Bible library...</div>
+
   <div id="scripture" class="scripture">
-   <div class="loading">Choose a book and chapter, then select Read Chapter.</div>
+   <div class="loading">Preparing your Bible reader...</div>
   </div>
+
   <div class="chapter-nav">
-   <button class="outline-btn" id="previousButton">← Previous</button>
-   <button class="outline-btn" id="nextButton">Next →</button>
+   <button class="outline-btn" id="previousButton" disabled>← Previous</button>
+   <button class="outline-btn" id="nextButton" disabled>Next →</button>
   </div>
  </div>
 </section>
 
 <section id="books" class="page">
- <div class="eyebrow">66 books · One story</div>
+ <div class="eyebrow">One story · Many books</div>
  <h1 class="section-title">The Books of the Bible</h1>
- <p class="sub">Select any book to open its first chapter.</p>
+ <p class="sub">Choose a book to open its first chapter.</p>
  <h2>Old Testament</h2>
  <div class="grid" id="oldBooks"></div>
  <h2 style="margin-top:40px">New Testament</h2>
@@ -156,7 +182,7 @@ footer span{color:var(--gold)}
 <section id="discover" class="page">
  <div class="eyebrow">Wisdom for every day</div>
  <h1 class="section-title">Discover</h1>
- <p class="sub">A few places to begin exploring Scripture.</p>
+ <p class="sub">Choose a theme to explore a Bible chapter.</p>
  <div class="grid">
   <div class="feature-card" onclick="openReference('Psalms',23)"><h3>Peace</h3><p>Find comfort and reassurance in Psalm 23.</p></div>
   <div class="feature-card" onclick="openReference('Proverbs',3)"><h3>Wisdom</h3><p>Explore guidance and wisdom in Proverbs 3.</p></div>
@@ -171,6 +197,7 @@ footer span{color:var(--gold)}
  <div class="eyebrow">Your personal space</div>
  <h1 class="section-title">Reflection Journal</h1>
  <p class="sub">Write down your thoughts, questions and reflections.</p>
+
  <div class="panel">
   <div class="field">
    <label for="journalTitle">Entry title</label>
@@ -181,8 +208,9 @@ footer span{color:var(--gold)}
    <textarea id="journalText" placeholder="Write your reflection here..."></textarea>
   </div>
   <button class="gold-btn" style="margin-top:15px" id="saveJournal">Save reflection</button>
-  <p class="sub" style="font-size:12px;margin:15px 0 0">Your journal entries are saved in this browser on this device.</p>
+  <p class="sub" style="font-size:12px;margin:15px 0 0">Entries are saved in this browser on this device.</p>
  </div>
+
  <h2>Your entries</h2>
  <div id="journalEntries"></div>
 </section>
@@ -193,114 +221,43 @@ footer span{color:var(--gold)}
  <div class="panel">
   <h2 style="color:var(--gold);font-size:30px">The Living Word</h2>
   <p style="line-height:1.9;color:var(--muted)">ZIONA is a place to explore the Bible, discover meaningful Scripture and make time for reflection. Whether you are beginning your journey or returning to familiar passages, we hope this space helps you explore the richness of the Bible.</p>
-  <p style="line-height:1.9;color:var(--muted)">Explore all 66 books, read chapters, discover themes and keep a personal reflection journal.</p>
+  <p style="line-height:1.9;color:var(--muted)">Explore Bible books, read chapters in different available translations, discover themes and keep a personal reflection journal.</p>
  </div>
- <p class="sub">Independent Bible-reading project. Scripture text is provided through an external Bible API.</p>
+ <p class="sub">Scripture content is provided by the Free Use Bible API. Individual translations retain their own licensing and attribution requirements.</p>
+ <p><a style="color:var(--gold)" href="https://bible.helloao.org/docs/" target="_blank" rel="noopener">Bible API documentation ↗</a></p>
 </section>
+
 </main>
 
 <footer>ZIONA <span>·</span> THE LIVING WORD<br><br>Discover the Word. Deepen your faith.</footer>
 
 <script>
-// All 66 Bible books and their exact chapter counts.
-const books = [
- ["Genesis",50],["Exodus",40],["Leviticus",27],["Numbers",36],["Deuteronomy",34],
- ["Joshua",24],["Judges",21],["Ruth",4],["1 Samuel",31],["2 Samuel",24],
- ["1 Kings",22],["2 Kings",25],["1 Chronicles",29],["2 Chronicles",36],
- ["Ezra",10],["Nehemiah",13],["Esther",10],["Job",42],["Psalms",150],
- ["Proverbs",31],["Ecclesiastes",12],["Song of Solomon",8],["Isaiah",66],
- ["Jeremiah",52],["Lamentations",5],["Ezekiel",48],["Daniel",12],
- ["Hosea",14],["Joel",3],["Amos",9],["Obadiah",1],["Jonah",4],
- ["Micah",7],["Nahum",3],["Habakkuk",3],["Zephaniah",3],["Haggai",2],
- ["Zechariah",14],["Malachi",4],
- ["Matthew",28],["Mark",16],["Luke",24],["John",21],["Acts",28],
- ["Romans",16],["1 Corinthians",16],["2 Corinthians",13],["Galatians",6],
- ["Ephesians",6],["Philippians",4],["Colossians",4],
- ["1 Thessalonians",5],["2 Thessalonians",3],["1 Timothy",6],
- ["2 Timothy",4],["Titus",3],["Philemon",1],["Hebrews",13],
- ["James",5],["1 Peter",5],["2 Peter",3],["1 John",5],
- ["2 John",1],["3 John",1],["Jude",1],["Revelation",22]
-];
+const API = "https://bible.helloao.org/api";
 
+const translationSelect = document.getElementById("translationSelect");
 const bookSelect = document.getElementById("bookSelect");
 const chapterSelect = document.getElementById("chapterSelect");
 const scripture = document.getElementById("scripture");
+const readerStatus = document.getElementById("readerStatus");
 
-function populateBooks(){
- books.forEach(([name],index)=>{
-  const option=document.createElement("option");
-  option.value=name;
-  option.textContent=name;
-  bookSelect.appendChild(option);
- });
-}
+let translations = [];
+let currentTranslation = null;
+let currentBooks = [];
+let currentBook = null;
+let currentChapterData = null;
+let requestNumber = 0;
 
-function updateChapters(){
- const selectedBook=books.find(book=>book[0]===bookSelect.value);
- if(!selectedBook) return;
-
- const totalChapters=selectedBook[1];
- chapterSelect.innerHTML="";
-
- for(let chapter=1;chapter<=totalChapters;chapter++){
-  const option=document.createElement("option");
-  option.value=chapter;
-  option.textContent="Chapter "+chapter;
-  chapterSelect.appendChild(option);
- }
-
- chapterSelect.value="1";
-}
-
-async function loadChapter(){
- const book=bookSelect.value;
- const chapter=Number(chapterSelect.value);
- const translation=document.getElementById("translationSelect").value;
-
- if(!book||!chapter) return;
-
- scripture.innerHTML='<div class="loading">Loading Scripture...</div>';
- document.getElementById("readButton").disabled=true;
-
- try{
-  const reference=book+" "+chapter;
-  const url="https://bible-api.com/"+encodeURIComponent(reference)+"?translation="+encodeURIComponent(translation);
-  const response=await fetch(url);
-  if(!response.ok) throw new Error("The Bible text could not be loaded. Please try again.");
-  const data=await response.json();
-
-  if(!data.verses||!data.verses.length) throw new Error("No verses were returned for this chapter.");
-
-  scripture.innerHTML="";
-  const heading=document.createElement("h2");
-  heading.textContent=book+" "+chapter;
-  scripture.appendChild(heading);
-
-  data.verses.forEach(verse=>{
-   const paragraph=document.createElement("p");
-   paragraph.className="verse";
-   const number=document.createElement("sup");
-   number.textContent=verse.verse;
-   paragraph.appendChild(number);
-   paragraph.appendChild(document.createTextNode(verse.text.trim()));
-   scripture.appendChild(paragraph);
-  });
-
-  scripture.scrollIntoView({behavior:"smooth",block:"nearest"});
- }catch(error){
-  scripture.innerHTML="";
-  const message=document.createElement("div");
-  message.className="error";
-  message.textContent=error.message+" Check your internet connection and try again.";
-  scripture.appendChild(message);
- }finally{
-  document.getElementById("readButton").disabled=false;
- }
-}
+const preferredVersions = [
+ "BSB","KJV","WEB","ASV","BBE","DRA","DARBY"
+];
 
 function showPage(page){
- document.querySelectorAll(".page").forEach(section=>section.classList.remove("active"));
- document.querySelectorAll("nav button").forEach(button=>button.classList.toggle("active",button.dataset.page===page));
+ document.querySelectorAll(".page").forEach(section=>{
+  section.classList.remove("active");
+ });
+ document.querySelectorAll("nav button").forEach(button=>{
+  button.classList.toggle("active",button.dataset.page===page);
+ });
  document.getElementById(page).classList.add("active");
  window.scrollTo({top:0,behavior:"smooth"});
 }
@@ -309,106 +266,466 @@ document.querySelectorAll("nav button").forEach(button=>{
  button.addEventListener("click",()=>showPage(button.dataset.page));
 });
 
-function openReference(book,chapter){
- bookSelect.value=book;
- updateChapters();
- chapterSelect.value=String(chapter);
- showPage("bible");
- loadChapter();
+function setStatus(message){
+ readerStatus.textContent=message;
 }
 
-function makeBookCards(){
+function setReaderButtons(enabled){
+ document.getElementById("readButton").disabled=!enabled;
+ document.getElementById("randomButton").disabled=!enabled;
+ document.getElementById("previousButton").disabled=!enabled;
+ document.getElementById("nextButton").disabled=!enabled;
+}
+
+async function getJSON(url){
+ const response=await fetch(url);
+ if(!response.ok){
+  throw new Error("The Bible service returned an error ("+response.status+").");
+ }
+ return await response.json();
+}
+
+function translationLabel(translation){
+ const name=translation.englishName||translation.name||translation.id;
+ const abbreviation=translation.shortName||translation.id;
+ return name+" ("+abbreviation+")";
+}
+
+async function initialiseBible(){
+ try{
+  const data=await getJSON(API+"/available_translations.json");
+
+  translations=(data.translations||[])
+   .filter(t=>t.language==="eng" && t.numberOfBooks===66)
+   .sort((a,b)=>{
+    const ai=preferredVersions.indexOf((a.shortName||a.id).toUpperCase());
+    const bi=preferredVersions.indexOf((b.shortName||b.id).toUpperCase());
+    if(ai!==-1 && bi!==-1) return ai-bi;
+    if(ai!==-1) return -1;
+    if(bi!==-1) return 1;
+    return translationLabel(a).localeCompare(translationLabel(b));
+   });
+
+  translationSelect.innerHTML="";
+
+  translations.forEach(translation=>{
+   const option=document.createElement("option");
+   option.value=translation.id;
+   option.textContent=translationLabel(translation);
+   translationSelect.appendChild(option);
+  });
+
+  // NIV is deliberately not offered as a working option:
+  // the no-key open API does not provide copyrighted NIV text.
+  const nivOption=document.createElement("option");
+  nivOption.value="";
+  nivOption.textContent="NIV — requires separate publisher permission";
+  nivOption.disabled=true;
+  translationSelect.appendChild(nivOption);
+
+  if(!translations.length){
+   throw new Error("No complete English translations were returned.");
+  }
+
+  const preferred=translations.find(t=>
+   (t.shortName||t.id).toUpperCase()==="BSB"
+  ) || translations.find(t=>
+   (t.shortName||t.id).toUpperCase()==="KJV"
+  ) || translations[0];
+
+  translationSelect.value=preferred.id;
+  translationSelect.disabled=false;
+
+  await loadBooks(preferred.id);
+
+ }catch(error){
+  scripture.innerHTML="";
+  const message=document.createElement("div");
+  message.className="error";
+  message.textContent="We couldn't connect to the Bible library. Please refresh the page and try again. "+error.message;
+  scripture.appendChild(message);
+  setStatus("Bible library unavailable.");
+ }
+}
+
+async function loadBooks(translationId,preferredBookName){
+ const thisRequest=++requestNumber;
+
+ currentTranslation=translations.find(t=>t.id===translationId);
+ currentBooks=[];
+ currentBook=null;
+ currentChapterData=null;
+
+ bookSelect.disabled=true;
+ chapterSelect.disabled=true;
+ setReaderButtons(false);
+
+ scripture.innerHTML='<div class="loading">Loading the books of the Bible...</div>';
+ setStatus("Loading "+(currentTranslation?.englishName||"Bible")+"...");
+
+ try{
+  const data=await getJSON(API+"/"+encodeURIComponent(translationId)+"/books.json");
+  if(thisRequest!==requestNumber) return;
+
+  currentBooks=(data.books||[])
+   .filter(book=>!book.isApocryphal)
+   .sort((a,b)=>a.order-b.order);
+
+  if(!currentBooks.length){
+   throw new Error("No books were found for this translation.");
+  }
+
+  bookSelect.innerHTML="";
+  currentBooks.forEach(book=>{
+   const option=document.createElement("option");
+   option.value=book.id;
+   option.textContent=book.commonName||book.name;
+   bookSelect.appendChild(option);
+  });
+
+  bookSelect.disabled=false;
+
+  const desired=preferredBookName
+   ? currentBooks.find(b=>
+      (b.commonName||b.name).toLowerCase()===preferredBookName.toLowerCase()
+     )
+   : null;
+
+  const genesis=currentBooks.find(b=>
+   (b.commonName||b.name).toLowerCase()==="genesis"
+  );
+
+  currentBook=desired||genesis||currentBooks[0];
+  bookSelect.value=currentBook.id;
+
+  updateChapterOptions(1);
+  renderBookCards();
+  setStatus(
+   translationLabel(currentTranslation)+" · "+
+   currentBooks.length+" books available"
+  );
+
+  await loadChapter(1);
+
+ }catch(error){
+  if(thisRequest!==requestNumber) return;
+  scripture.innerHTML="";
+  const message=document.createElement("div");
+  message.className="error";
+  message.textContent="Unable to load this translation's books. "+error.message;
+  scripture.appendChild(message);
+  setStatus("Could not load books.");
+ }
+}
+
+function updateChapterOptions(selectedChapter){
+ if(!currentBook) return;
+
+ chapterSelect.innerHTML="";
+ const total=currentBook.numberOfChapters;
+
+ for(let i=1;i<=total;i++){
+  const option=document.createElement("option");
+  option.value=String(i);
+  option.textContent="Chapter "+i;
+  chapterSelect.appendChild(option);
+ }
+
+ chapterSelect.value=String(
+  Math.min(Math.max(selectedChapter||1,1),total)
+ );
+ chapterSelect.disabled=false;
+}
+
+function renderBookCards(){
  const oldContainer=document.getElementById("oldBooks");
  const newContainer=document.getElementById("newBooks");
+ oldContainer.innerHTML="";
+ newContainer.innerHTML="";
 
- books.forEach(([name,count],index)=>{
+ currentBooks.forEach(book=>{
   const card=document.createElement("div");
   card.className="book-card";
+
   const title=document.createElement("h3");
-  title.textContent=name;
+  title.textContent=book.commonName||book.name;
+
   const description=document.createElement("p");
-  description.textContent=count+" chapters · "+(index<39?"Old Testament":"New Testament");
+  description.textContent=
+   book.numberOfChapters+" chapters · "+
+   (book.order<=39?"Old Testament":"New Testament");
+
   card.append(title,description);
-  card.addEventListener("click",()=>openReference(name,1));
-  (index<39?oldContainer:newContainer).appendChild(card);
+  card.addEventListener("click",()=>{
+   openBook(book.id);
+  });
+
+  (book.order<=39?oldContainer:newContainer).appendChild(card);
  });
 }
 
-document.getElementById("readButton").addEventListener("click",loadChapter);
-bookSelect.addEventListener("change",()=>{
- updateChapters();
- scripture.innerHTML='<div class="loading">Choose a chapter and select Read Chapter.</div>';
-});
-document.getElementById("previousButton").addEventListener("click",()=>{
- let chapter=Number(chapterSelect.value);
- if(chapter>1){chapterSelect.value=String(chapter-1);loadChapter();}
-});
-document.getElementById("nextButton").addEventListener("click",()=>{
- const total=books.find(book=>book[0]===bookSelect.value)[1];
- let chapter=Number(chapterSelect.value);
- if(chapter<total){chapterSelect.value=String(chapter+1);loadChapter();}
-});
-document.getElementById("randomButton").addEventListener("click",()=>{
- const book=books[Math.floor(Math.random()*books.length)];
- bookSelect.value=book[0];
- updateChapters();
- chapterSelect.value=String(Math.floor(Math.random()*book[1])+1);
- loadChapter();
+async function openBook(bookId){
+ const book=currentBooks.find(b=>b.id===bookId);
+ if(!book) return;
+
+ currentBook=book;
+ bookSelect.value=book.id;
+ updateChapterOptions(1);
+ showPage("bible");
+ await loadChapter(1);
+}
+
+async function loadChapter(chapterNumber){
+ if(!currentTranslation||!currentBook) return;
+
+ const chapter=Number(chapterNumber);
+ if(!Number.isInteger(chapter)||chapter<1||chapter>currentBook.numberOfChapters) return;
+
+ const thisRequest=++requestNumber;
+ chapterSelect.value=String(chapter);
+ setReaderButtons(false);
+
+ scripture.innerHTML='<div class="loading">Opening Scripture...</div>';
+ setStatus("Loading "+(currentBook.commonName||currentBook.name)+" "+chapter+"...");
+
+ const url=API+"/"+
+  encodeURIComponent(currentTranslation.id)+"/"+
+  encodeURIComponent(currentBook.id)+"/"+
+  chapter+".simple.json";
+
+ try{
+  const data=await getJSON(url);
+  if(thisRequest!==requestNumber) return;
+
+  currentChapterData=data;
+  renderChapter(data);
+
+  setStatus(
+   translationLabel(currentTranslation)+" · "+
+   (currentBook.commonName||currentBook.name)+" "+chapter
+  );
+
+  setReaderButtons(true);
+
+ }catch(error){
+  if(thisRequest!==requestNumber) return;
+
+  scripture.innerHTML="";
+  const message=document.createElement("div");
+  message.className="error";
+  message.textContent="Sorry, this chapter could not be loaded. Please try again. "+error.message;
+  scripture.appendChild(message);
+
+  setStatus("Chapter unavailable.");
+  setReaderButtons(true);
+ }
+}
+
+function renderChapter(data){
+ scripture.innerHTML="";
+
+ const heading=document.createElement("h2");
+ heading.textContent=
+  (currentBook.commonName||currentBook.name)+" "+
+  data.chapter.number;
+ scripture.appendChild(heading);
+
+ const content=data.chapter.content||[];
+
+ content.forEach(item=>{
+  if(item.type==="heading"){
+   const h=document.createElement("h3");
+   h.className="chapter-heading";
+   h.textContent=item.text;
+   scripture.appendChild(h);
+  }
+
+  if(item.type==="verse"){
+   const paragraph=document.createElement("p");
+   paragraph.className="verse";
+
+   const number=document.createElement("sup");
+   number.textContent=item.number;
+
+   paragraph.appendChild(number);
+   paragraph.appendChild(document.createTextNode(item.text));
+   scripture.appendChild(paragraph);
+  }
+ });
+
+ const attribution=document.createElement("div");
+ attribution.className="attribution";
+
+ const notice=currentTranslation.licenseNotice;
+ const website=currentTranslation.website;
+ const license=currentTranslation.licenseUrl;
+
+ attribution.textContent=
+  notice ||
+  "Translation: "+translationLabel(currentTranslation)+
+  ". Please consult the translation's licensing information.";
+
+ if(website){
+  const link=document.createElement("a");
+  link.href=website;
+  link.target="_blank";
+  link.rel="noopener";
+  link.textContent=" Translation website";
+  attribution.appendChild(link);
+ }
+
+ if(license && license!==website){
+  const link=document.createElement("a");
+  link.href=license;
+  link.target="_blank";
+  link.rel="noopener";
+  link.textContent=" Licence details";
+  attribution.appendChild(link);
+ }
+
+ scripture.appendChild(attribution);
+}
+
+translationSelect.addEventListener("change",async()=>{
+ if(!translationSelect.value) return;
+ const previousBook=currentBook?.commonName||currentBook?.name;
+ await loadBooks(translationSelect.value,previousBook);
 });
 
-// Journal: stored locally in this browser.
-function getEntries(){
- try{return JSON.parse(localStorage.getItem("zionaJournal")||"[]");}
- catch{return [];}
+bookSelect.addEventListener("change",async()=>{
+ const book=currentBooks.find(b=>b.id===bookSelect.value);
+ if(!book) return;
+
+ currentBook=book;
+ updateChapterOptions(1);
+ await loadChapter(1);
+});
+
+chapterSelect.addEventListener("change",()=>{
+ loadChapter(Number(chapterSelect.value));
+});
+
+document.getElementById("readButton").addEventListener("click",()=>{
+ loadChapter(Number(chapterSelect.value));
+});
+
+document.getElementById("previousButton").addEventListener("click",()=>{
+ if(!currentBook) return;
+ const chapter=Number(chapterSelect.value);
+ if(chapter>1) loadChapter(chapter-1);
+});
+
+document.getElementById("nextButton").addEventListener("click",()=>{
+ if(!currentBook) return;
+ const chapter=Number(chapterSelect.value);
+ if(chapter<currentBook.numberOfChapters) loadChapter(chapter+1);
+});
+
+document.getElementById("randomButton").addEventListener("click",()=>{
+ if(!currentBooks.length) return;
+
+ const book=currentBooks[Math.floor(Math.random()*currentBooks.length)];
+ currentBook=book;
+ bookSelect.value=book.id;
+
+ const chapter=Math.floor(Math.random()*book.numberOfChapters)+1;
+ updateChapterOptions(chapter);
+ loadChapter(chapter);
+});
+
+async function openReference(bookName,chapter){
+ const book=currentBooks.find(b=>
+  (b.commonName||b.name).toLowerCase()===bookName.toLowerCase()
+ );
+
+ if(!book){
+  showPage("bible");
+  setStatus("That book is not available in the selected translation.");
+  return;
+ }
+
+ currentBook=book;
+ bookSelect.value=book.id;
+ updateChapterOptions(chapter);
+ showPage("bible");
+ await loadChapter(chapter);
 }
+
+// Journal storage
+function getEntries(){
+ try{
+  return JSON.parse(localStorage.getItem("zionaJournal")||"[]");
+ }catch{
+  return [];
+ }
+}
+
 function renderEntries(){
  const container=document.getElementById("journalEntries");
  container.innerHTML="";
  const entries=getEntries();
+
  if(!entries.length){
   container.innerHTML='<p class="sub">Your saved reflections will appear here.</p>';
   return;
  }
+
  entries.forEach((entry,index)=>{
   const card=document.createElement("div");
   card.className="journal-entry";
+
   const date=document.createElement("small");
   date.textContent=entry.date;
+
   const heading=document.createElement("h3");
   heading.textContent=entry.title;
+
   const content=document.createElement("p");
   content.textContent=entry.text;
+
   const remove=document.createElement("button");
   remove.className="outline-btn";
   remove.textContent="Delete entry";
+
   remove.addEventListener("click",()=>{
    const updated=getEntries();
    updated.splice(index,1);
    localStorage.setItem("zionaJournal",JSON.stringify(updated));
    renderEntries();
   });
+
   card.append(date,heading,content,remove);
   container.appendChild(card);
  });
 }
+
 document.getElementById("saveJournal").addEventListener("click",()=>{
  const title=document.getElementById("journalTitle").value.trim();
  const text=document.getElementById("journalText").value.trim();
- if(!title||!text){alert("Please enter a title and reflection first.");return;}
+
+ if(!title||!text){
+  alert("Please enter a title and reflection first.");
+  return;
+ }
+
  const entries=getEntries();
- entries.unshift({title,text,date:new Date().toLocaleString()});
+ entries.unshift({
+  title,
+  text,
+  date:new Date().toLocaleString()
+ });
+
  localStorage.setItem("zionaJournal",JSON.stringify(entries));
+
  document.getElementById("journalTitle").value="";
  document.getElementById("journalText").value="";
+
  renderEntries();
  alert("Your reflection has been saved.");
 });
 
-populateBooks();
-bookSelect.value="Genesis";
-updateChapters();
-makeBookCards();
 renderEntries();
+initialiseBible();
 </script>
 </body>
 </html>
